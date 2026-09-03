@@ -21,25 +21,35 @@ import {
 } from "../store/slices/user.slice";
 import type { UserData } from "../typescript/type/user.type";
 
-interface UserDialogInterface{
-  open: boolean
-  setOpen: (open: boolean)=> void
-  isEdit: string | null
-  setIsEdit: ((isEdit: string | null)=> void )| null
-  mode: string
+interface UserDialogInterface {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  isEdit: string | null;
+  setIsEdit: ((isEdit: string | null) => void) | null;
+  mode: string;
   user: {
-    name: string
-    email: string
-    role: string
-    status: string
-    phone: string
-  } | null
-  page: number
-  limit: number
-  search: string
+    name: string;
+    email: string;
+    role: string;
+    status: string;
+    phone: string;
+  } | null;
+  page?: number;
+  limit?: number;
+  search?: string;
 }
 
-const UserDialog:React.FC<UserDialogInterface> = ({ open, setOpen, isEdit, setIsEdit, mode, user, page,  limit, search }) => {
+const UserDialog: React.FC<UserDialogInterface> = ({
+  open,
+  setOpen,
+  isEdit,
+  setIsEdit,
+  mode,
+  user,
+  page,
+  limit,
+  search,
+}) => {
   const { loading, userList } = useAppSeletor((state) => state.user);
   const dispatch = useAppDispatch();
 
@@ -57,7 +67,11 @@ const UserDialog:React.FC<UserDialogInterface> = ({ open, setOpen, isEdit, setIs
     },
   });
 
-  const onSubmit = async (data: {email: string, name: string, phone: string}) => {
+  const onSubmit = async (data: {
+    email: string;
+    name: string;
+    phone: string;
+  }) => {
     // console.log(data);
     try {
       if (isEdit) {
@@ -88,7 +102,7 @@ const UserDialog:React.FC<UserDialogInterface> = ({ open, setOpen, isEdit, setIs
             phone: "",
           });
           setOpen(false);
-          dispatch(getProfile())
+          dispatch(getProfile());
         }
       } else {
         const response = await dispatch(createUser(data)).unwrap();
@@ -197,7 +211,7 @@ const UserDialog:React.FC<UserDialogInterface> = ({ open, setOpen, isEdit, setIs
               color="success"
               type="submit"
               form="subscription-form"
-              style={{backgroundColor: '#7e22ce'}}
+              style={{ backgroundColor: "#7e22ce" }}
             >
               {loading.create || loading.updateByAdmin ? (
                 <CircularProgress size={24} />

@@ -3,14 +3,12 @@ import UserDialog from "../../components/UserDialog";
 import React, { useState } from "react";
 import UserTable from "../../components/UserTable";
 
-
 const UserManagement = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [isEdit, setIsEdit] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
-   const [page, setPage] = useState<number>(1);
-   const [limit, setLimit] = useState<number>(5);
- 
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(5);
 
   return (
     <>
@@ -19,9 +17,10 @@ const UserManagement = () => {
           <h2 className="text-3xl font-bold ">All Users</h2>
           <div className="flex gap-2">
             <input
-            onChange={(e)=> {
-              setPage(1)
-              setSearch(e.target.value)}}
+              onChange={(e) => {
+                setPage(1);
+                setSearch(e.target.value);
+              }}
               type="search"
               placeholder="Search by user name here..."
               className="border border-gray-900 outline-none rounded-md p-2 px-6"
@@ -47,8 +46,15 @@ const UserManagement = () => {
         setOpen={setOpen}
         mode="admin"
       />
-      <UserTable setIsEdit={setIsEdit} setOpen={setOpen} limit={limit} setLimit={setLimit} search={search} page={page} setPage={setPage}/>
-      
+      <UserTable
+        setIsEdit={setIsEdit}
+        setOpen={setOpen}
+        limit={limit}
+        setLimit={setLimit}
+        search={search}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 };

@@ -87,7 +87,7 @@ export const createUser = createAsyncThunk(
 export const getAllUser = createAsyncThunk(
   "user/getalluser",
   async (
-    { page, limit, name }: { page: number; limit: number; name: string },
+    { page, limit, name }: { page: number | undefined; limit: number | undefined; name: string | undefined },
     { rejectWithValue },
   ) => {
     try {
