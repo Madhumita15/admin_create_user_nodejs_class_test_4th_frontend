@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSeletor } from "../services/helper/redux";
 import { toast } from "sonner";
 import {
   createUser,
+  getAllUser,
   getProfile,
   updateUserByAdmin,
   updateUserProfile,
@@ -33,9 +34,12 @@ interface UserDialogInterface{
     status: string
     phone: string
   } | null
+  page: number
+  limit: number
+  search: string
 }
 
-const UserDialog:React.FC<UserDialogInterface> = ({ open, setOpen, isEdit, setIsEdit, mode, user }) => {
+const UserDialog:React.FC<UserDialogInterface> = ({ open, setOpen, isEdit, setIsEdit, mode, user, page,  limit, search }) => {
   const { loading, userList } = useAppSeletor((state) => state.user);
   const dispatch = useAppDispatch();
 
@@ -96,6 +100,7 @@ const UserDialog:React.FC<UserDialogInterface> = ({ open, setOpen, isEdit, setIs
             email: "",
             phone: "",
           });
+          dispatch(getAllUser({ page: page, limit: limit, name: search }));
           setOpen(false);
         }
       }

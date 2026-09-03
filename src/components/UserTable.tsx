@@ -31,10 +31,12 @@ interface UserTableInterface{
   search: string;
   page: number;
   setPage: (page: number)=> void
+  limit: number
+  setLimit: (limit: number)=> void
 
 }
 
-const UserTable: React.FC<UserTableInterface> = ({ setIsEdit, setOpen, search,  page, setPage }) => {
+const UserTable: React.FC<UserTableInterface> = ({ setIsEdit, setOpen, search,  page, setPage, limit, setLimit }) => {
   const {
     userList,
     error,
@@ -50,7 +52,6 @@ const UserTable: React.FC<UserTableInterface> = ({ setIsEdit, setOpen, search,  
   } = useAppSeletor((state) => state.user);
   const [openById, setOpenById] = useState<boolean>(false);
   const [userId, setUserId] = useState<string | null>(null);
-  const [limit, setLimit] = useState<number>(5);
   const dispatch = useAppDispatch();
   console.log("userbyid", userById);
 

@@ -9,6 +9,7 @@ const UserManagement = () => {
   const [isEdit, setIsEdit] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
    const [page, setPage] = useState<number>(1);
+   const [limit, setLimit] = useState<number>(5);
  
 
   return (
@@ -40,10 +41,13 @@ const UserManagement = () => {
         isEdit={isEdit}
         setIsEdit={setIsEdit}
         open={open}
+        limit={limit}
+        page={page}
+        search={search}
         setOpen={setOpen}
         mode="admin"
       />
-      <UserTable setIsEdit={setIsEdit} setOpen={setOpen} search={search} page={page} setPage={setPage}/>
+      <UserTable setIsEdit={setIsEdit} setOpen={setOpen} limit={limit} setLimit={setLimit} search={search} page={page} setPage={setPage}/>
       
     </>
   );
